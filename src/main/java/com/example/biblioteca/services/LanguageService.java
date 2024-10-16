@@ -13,4 +13,6 @@ public interface LanguageService {
     public List<LanguageModel> getAllLanguages();
 
     public void deleteLanguageById(Integer id);
+
+    public LanguageModel updateLanguage(Integer id, LanguageModel languageToUpdate);
 }
