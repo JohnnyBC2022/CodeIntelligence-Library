@@ -16,7 +16,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     public CopyModel saveCopy(CopyModel copy) {
         CopyModel result = new CopyModel();
-        try{
+        try {
             result = copyRepo.save(copy);
         } catch (Exception e) {
             System.out.println("[saveCopy] exception: " + e.getMessage());
@@ -44,7 +44,7 @@ public class CopyServiceImpl implements CopyService {
 
         try {
             copies = copyRepo.findAll();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("[getAllCopies] exception: " + e.getMessage());
         }
 
@@ -55,8 +55,25 @@ public class CopyServiceImpl implements CopyService {
     public void deleteCopyById(Integer id) {
         try {
             copyRepo.deleteById(id);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("[deleteCopyById] exception: " + e.getMessage());
         }
+    }
+
+    @Override
+    public CopyModel updateCopy(Integer id, CopyModel copyToUpdate) {
+        CopyModel existingCopy = new CopyModel();
+
+        try {
+            existingCopy = copyRepo.findById(id).get();
+            existingCopy.setIdBook(copyToUpdate.getIdBook());
+
+
+            existingCopy = copyRepo.save(existingCopy);
+        } catch (Exception e) {
+            System.out.println("[updateCopy] exception: " + e.getMessage());
+        }
+
+        return existingCopy;
     }
 }
