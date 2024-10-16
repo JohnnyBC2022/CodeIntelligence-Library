@@ -61,4 +61,22 @@ public class MemberServiceImpl implements MemberService {
             System.out.println("[deleteMemberById] exception: " + e.getMessage());
         }
     }
+
+    @Override
+        public MemberModel updateMember(Integer id, MemberModel memberToUpdate) {
+            MemberModel existingMember = new MemberModel();
+
+            try {
+                existingMember = memberRepo.findById(id).get();
+                existingMember.setAddress(memberToUpdate.getAddress());
+                existingMember.setDni(memberToUpdate.getDni());
+                existingMember.setPhone(memberToUpdate.getPhone());
+
+                existingMember = memberRepo.save(existingMember);
+            } catch (Exception e) {
+                System.out.println("[updateMember] exception: " + e.getMessage());
+            }
+
+            return existingMember;
+        }
 }
