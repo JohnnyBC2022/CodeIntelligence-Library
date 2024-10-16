@@ -42,4 +42,9 @@ public class CopyController {
         copyService.deleteCopyById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/update/{id}")
+    public CopyModel updateCopy(@PathVariable(value = "id") Integer id, @RequestBody CopyModel copyToUpdate) {
+        return copyService.updateCopy(id, copyToUpdate);
+    }
 }
