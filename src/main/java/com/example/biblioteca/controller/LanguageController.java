@@ -43,5 +43,10 @@ public class LanguageController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/update/{id}")
+    public LanguageModel updateLanguage(@PathVariable(value = "id") Integer id, @RequestBody LanguageModel languageToUpdate) {
+        return languageService.updateLanguage(id, languageToUpdate);
+    }
+
 
 }
