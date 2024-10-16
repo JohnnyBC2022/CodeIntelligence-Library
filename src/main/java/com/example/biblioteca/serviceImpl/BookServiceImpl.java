@@ -63,4 +63,21 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    @Override
+    public BookModel updateBook(Integer id, BookModel bookToUpdate) {
+        BookModel existingBook = new BookModel();
+
+        try {
+            existingBook = bookRepo.findById(id).get();
+            existingBook.setIdLanguage(bookToUpdate.getIdLanguage());
+            existingBook.setPublicationYear(bookToUpdate.getPublicationYear());
+            existingBook.setTitle(bookToUpdate.getTitle());
+        } catch (Exception e) {
+            System.out.println("[updateBook] exception: " + e.getMessage());
+        }
+
+        return existingBook;
+    }
+
+
 }
