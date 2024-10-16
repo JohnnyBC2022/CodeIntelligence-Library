@@ -4,9 +4,11 @@ import com.example.biblioteca.models.TopicModel;
 import com.example.biblioteca.repository.TopicRepository;
 import com.example.biblioteca.services.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TopicServiceImpl implements TopicService {
     @Autowired
     TopicRepository topicRepo;

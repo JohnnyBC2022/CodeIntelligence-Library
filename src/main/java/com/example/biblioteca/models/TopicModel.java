@@ -3,7 +3,7 @@ package com.example.biblioteca.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name="topic")
 public class TopicModel {
 
     @Id
