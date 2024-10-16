@@ -72,6 +72,8 @@ public class BookServiceImpl implements BookService {
             existingBook.setIdLanguage(bookToUpdate.getIdLanguage());
             existingBook.setPublicationYear(bookToUpdate.getPublicationYear());
             existingBook.setTitle(bookToUpdate.getTitle());
+
+            existingBook = bookRepo.save(existingBook);
         } catch (Exception e) {
             System.out.println("[updateBook] exception: " + e.getMessage());
         }

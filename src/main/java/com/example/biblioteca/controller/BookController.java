@@ -48,5 +48,11 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/update/{id}")
+    public BookModel updateBook(@PathVariable(value = "id") Integer id, @RequestBody BookModel bookToUpdate){
+        return bookService.updateBook(id, bookToUpdate);
+    }
+
+
 
 }
