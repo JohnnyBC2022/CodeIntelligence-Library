@@ -13,4 +13,6 @@ public interface BookService {
     public List<BookModel> getAllBooks();
 
     public void deleteBookById(Integer id);
+
+    public BookModel updateBook(Integer id, BookModel bookToUpdate);
 }
