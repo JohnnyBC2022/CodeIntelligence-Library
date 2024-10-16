@@ -44,4 +44,9 @@ public class AuthorController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/update/{id}")
+    public AuthorModel updateAuthor(@PathVariable(value = "id") Integer id, @RequestBody AuthorModel authorToUpdate) {
+        return authorService.updateAuthor(id, authorToUpdate);
+    }
+
 }
