@@ -13,4 +13,6 @@ public interface CopyService {
     public List<CopyModel> getAllCopies();
 
     public void deleteCopyById(Integer id);
+
+    public CopyModel updateCopy(Integer id, CopyModel copyToUpdate);
 }
