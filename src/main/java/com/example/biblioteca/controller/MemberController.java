@@ -42,4 +42,9 @@ public class MemberController {
         memberService.deleteMemberById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/update/{id}")
+    public MemberModel updateMember(@PathVariable(value = "id") Integer id, @RequestBody MemberModel memberToUpdate) {
+        return memberService.updateMember(id, memberToUpdate);
+    }
 }
