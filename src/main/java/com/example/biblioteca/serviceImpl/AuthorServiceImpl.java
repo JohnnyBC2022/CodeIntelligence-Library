@@ -52,12 +52,28 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void deleteAuthorById(Integer id){
+    public void deleteAuthorById(Integer id) {
         try {
             authorRepo.deleteById(id);
         } catch (Exception e) {
             System.out.println("[deleteAuthorById] exception: " + e.getMessage());
         }
+    }
+
+    @Override
+    public AuthorModel updateAuthor(Integer id, AuthorModel authorToUpdate) {
+        AuthorModel existingAuthor = new AuthorModel();
+
+        try {
+            existingAuthor = authorRepo.findById(id).get();
+            existingAuthor.setAuthorName(authorToUpdate.getAuthorName());
+
+            existingAuthor = authorRepo.save(existingAuthor);
+        } catch (Exception e) {
+            System.out.println("[updateAuthor] exception: " + e.getMessage());
+        }
+
+        return existingAuthor;
     }
 
 }
