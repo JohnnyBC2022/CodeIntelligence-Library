@@ -60,4 +60,21 @@ public class TopicServiceImpl implements TopicService {
             System.out.println("[deleteTopicById] exception: " + e.getMessage());
         }
     }
+
+    @Override
+    public TopicModel updateTopic(Integer id, TopicModel topicToUpdate) {
+        TopicModel existingTopic = new TopicModel();
+
+        try {
+            existingTopic = topicRepo.findById(id).get();
+            existingTopic.setTopicDescription(topicToUpdate.getTopicDescription());
+
+
+            existingTopic = topicRepo.save(existingTopic);
+        } catch (Exception e) {
+            System.out.println("[updateTopic] exception: " + e.getMessage());
+        }
+
+        return existingTopic;
+    }
 }
