@@ -13,4 +13,6 @@ public interface TopicService {
     public List<TopicModel> getAllTopics();
 
     public void deleteTopicById(Integer id);
+
+    public TopicModel updateTopic(Integer id, TopicModel topicToUpdate);
 }

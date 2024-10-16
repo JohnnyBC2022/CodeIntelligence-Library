@@ -13,5 +13,5 @@ public interface MemberService {
 
     public void deleteMemberById(Integer id);
 
-    public MemberModel updateMember(Integer id, MemberModel memeberToUpdate);
+    public MemberModel updateMember(Integer id, MemberModel memberToUpdate);
 }
