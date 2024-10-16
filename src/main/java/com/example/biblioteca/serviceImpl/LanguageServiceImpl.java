@@ -61,5 +61,22 @@ public class LanguageServiceImpl implements LanguageService {
         }
     }
 
+    @Override
+    public LanguageModel updateLanguage(Integer id, LanguageModel languageToUpdate) {
+        LanguageModel existingLanguage = new LanguageModel();
+
+        try {
+            existingLanguage = languageRepo.findById(id).get();
+            existingLanguage.setDescription(languageToUpdate.getDescription());
+
+
+            existingLanguage = languageRepo.save(existingLanguage);
+        } catch (Exception e) {
+            System.out.println("[updateLanguage] exception: " + e.getMessage());
+        }
+
+        return existingLanguage;
+    }
+
 
 }
