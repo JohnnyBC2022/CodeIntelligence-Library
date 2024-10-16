@@ -44,4 +44,9 @@ public class TopicController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/update/{id}")
+    public TopicModel updateTopic(@PathVariable(value = "id") Integer id, @RequestBody TopicModel topicToUpdate) {
+        return topicService.updateTopic(id, topicToUpdate);
+    }
+
 }
