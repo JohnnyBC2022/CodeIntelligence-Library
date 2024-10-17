@@ -1,10 +1,9 @@
 package com.example.biblioteca.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "BOOK")
@@ -20,6 +19,10 @@ public class BookModel {
 
     private Integer idLanguage;
 
+    @ManyToMany(targetEntity = AuthorModel.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "id_book"), inverseJoinColumns = @JoinColumn(name = "id_author"))
+    @JsonIgnore
+    private List<AuthorModel> authors;
 
     public Integer getIdBook() {
         return idBook;

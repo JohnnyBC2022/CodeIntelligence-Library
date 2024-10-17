@@ -1,6 +1,9 @@
 package com.example.biblioteca.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "AUTHOR")
@@ -11,6 +14,11 @@ public class AuthorModel {
     private Integer idAuthor;
 
     private String authorName;
+
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BookModel> books;
+
 
     public Integer getIdAuthor() {
         return idAuthor;
