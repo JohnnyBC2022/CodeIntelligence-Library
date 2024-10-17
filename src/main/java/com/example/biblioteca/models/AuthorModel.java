@@ -39,6 +39,14 @@ public class AuthorModel {
     public AuthorModel() {
     }
 
+    public List<BookModel> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookModel> books) {
+        this.books = books;
+    }
+
     public AuthorModel(Integer idAuthor, String authorName) {
         this.idAuthor = idAuthor;
         this.authorName = authorName;

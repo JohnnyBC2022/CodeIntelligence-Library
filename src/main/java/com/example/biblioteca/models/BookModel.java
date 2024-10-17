@@ -56,6 +56,14 @@ public class BookModel {
         this.idLanguage = idLanguage;
     }
 
+    public List<AuthorModel> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<AuthorModel> authors) {
+        this.authors = authors;
+    }
+
     public BookModel() {
     }
 

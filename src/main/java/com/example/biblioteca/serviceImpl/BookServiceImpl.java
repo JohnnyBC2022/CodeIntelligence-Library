@@ -1,5 +1,7 @@
 package com.example.biblioteca.serviceImpl;
 
+import com.example.biblioteca.models.AuthorModel;
+import com.example.biblioteca.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +10,16 @@ import com.example.biblioteca.repository.BookRepository;
 import com.example.biblioteca.services.BookService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepo;
+
+    @Autowired
+    AuthorRepository authorRepo;
 
     @Override
     public BookModel saveBook(BookModel book) {
@@ -79,6 +85,20 @@ public class BookServiceImpl implements BookService {
         }
 
         return existingBook;
+    }
+
+    @Override
+    public BookModel assignAuthorsToBook(Integer bookId, List<Integer> authorIds) {
+        Optional<BookModel> optionalBook = bookRepo.findById(bookId);
+        if (optionalBook.isPresent()) {
+            BookModel book = optionalBook.get();
+            List<AuthorModel> authors = authorRepo.findAllById(authorIds);
+            book.setAuthors(authors);
+            return bookRepo.save(book);
+        } else {
+            System.out.println("[assignAuthorsToBook] Book not found with ID: " + bookId);
+            return null;
+        }
     }
 
 

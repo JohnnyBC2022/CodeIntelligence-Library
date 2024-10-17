@@ -15,4 +15,7 @@ public interface BookService {
     public void deleteBookById(Integer id);
 
     public BookModel updateBook(Integer id, BookModel bookToUpdate);
+
+    public BookModel assignAuthorsToBook(Integer bookId, List<Integer> authorIds);
+
 }
