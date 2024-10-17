@@ -66,7 +66,7 @@ public class CopyServiceImpl implements CopyService {
 
         try {
             existingCopy = copyRepo.findById(id).get();
-            existingCopy.setIdBook(copyToUpdate.getIdBook());
+            existingCopy.setBook(copyToUpdate.getBook());
 
 
             existingCopy = copyRepo.save(existingCopy);

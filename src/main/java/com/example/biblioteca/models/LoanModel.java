@@ -1,5 +1,6 @@
 package com.example.biblioteca.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -12,11 +13,18 @@ public class LoanModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idLoan;
 
-    private Integer idBook;
+    @ManyToOne
+    @JoinColumn(name = "id_book", nullable = false)
+    private BookModel book;
 
-    private Integer idCopy;
+    @ManyToOne
+    @JoinColumn(name = "id_copy", nullable = false)
+    private CopyModel copy;
 
-    private Integer idMember;
+    @ManyToOne
+    @JoinColumn(name = "id_member", nullable = false)
+    @JsonIgnoreProperties("loans")
+    private MemberModel member;
 
     private LocalDate loanDate;
 
@@ -30,28 +38,28 @@ public class LoanModel {
         this.idLoan = idLoan;
     }
 
-    public Integer getIdBook() {
-        return idBook;
+    public BookModel getBook() {
+        return book;
     }
 
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
+    public void setBook(BookModel book) {
+        this.book = book;
     }
 
-    public Integer getIdCopy() {
-        return idCopy;
+    public CopyModel getCopy() {
+        return copy;
     }
 
-    public void setIdCopy(Integer idCopy) {
-        this.idCopy = idCopy;
+    public void setCopy(CopyModel copy) {
+        this.copy = copy;
     }
 
-    public Integer getIdMember() {
-        return idMember;
+    public MemberModel getMember() {
+        return member;
     }
 
-    public void setIdMember(Integer idMember) {
-        this.idMember = idMember;
+    public void setMember(MemberModel member) {
+        this.member = member;
     }
 
     public LocalDate getLoanDate() {
@@ -73,11 +81,11 @@ public class LoanModel {
     public LoanModel() {
     }
 
-    public LoanModel(Integer idLoan, Integer idBook, Integer idCopy, Integer idMember, LocalDate loanDate, LocalDate returnDate) {
+    public LoanModel(Integer idLoan, BookModel book, CopyModel copy, MemberModel member, LocalDate loanDate, LocalDate returnDate) {
         this.idLoan = idLoan;
-        this.idBook = idBook;
-        this.idCopy = idCopy;
-        this.idMember = idMember;
+        this.book = book;
+        this.copy = copy;
+        this.member = member;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
     }

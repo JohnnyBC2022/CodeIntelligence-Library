@@ -68,9 +68,9 @@ public class LoanServiceImpl implements LoanService {
 
         try{
             existingLoan = loanRepo.findById(id).get();
-            existingLoan.setIdCopy(loanToUpdate.getIdCopy());
-            existingLoan.setIdBook(loanToUpdate.getIdBook());
-            existingLoan.setIdMember(loanToUpdate.getIdMember());
+            existingLoan.setCopy(loanToUpdate.getCopy());
+            existingLoan.setBook(loanToUpdate.getBook());
+            existingLoan.setMember(loanToUpdate.getMember());
             existingLoan.setLoanDate(loanToUpdate.getLoanDate());
             existingLoan.setReturnDate(loanToUpdate.getReturnDate());
 

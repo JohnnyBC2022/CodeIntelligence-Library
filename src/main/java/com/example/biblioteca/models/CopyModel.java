@@ -1,6 +1,7 @@
 package com.example.biblioteca.models;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "COPY")
@@ -10,7 +11,14 @@ public class CopyModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idCopy;
 
-    private Integer idBook;
+    // Relación ManyToOne con BookModel
+    @ManyToOne
+    @JoinColumn(name = "id_book", nullable = false)  // nullable por si quieres que sea requerido
+    private BookModel book;
+
+    // Relación OneToMany con LoanModel, mappedBy debe referirse a la propiedad 'copy' en LoanModel
+    @OneToMany(mappedBy = "copy", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LoanModel> loans;
 
     public Integer getIdCopy() {
         return idCopy;
@@ -20,19 +28,28 @@ public class CopyModel {
         this.idCopy = idCopy;
     }
 
-    public Integer getIdBook() {
-        return idBook;
+    public BookModel getBook() {
+        return book;
     }
 
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
+    public void setBook(BookModel book) {
+        this.book = book;
+    }
+
+    public List<LoanModel> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanModel> loans) {
+        this.loans = loans;
     }
 
     public CopyModel() {
     }
 
-    public CopyModel(Integer idCopy, Integer idBook) {
+    public CopyModel(Integer idCopy, BookModel book, List<LoanModel> loans) {
         this.idCopy = idCopy;
-        this.idBook = idBook;
+        this.book = book;
+        this.loans = loans;
     }
 }
