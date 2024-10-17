@@ -53,6 +53,12 @@ public class BookController {
         return bookService.updateBook(id, bookToUpdate);
     }
 
+    @PostMapping("/{bookId}/authors/{authorId}")
+    public ResponseEntity<?> assignAuthorToBook(@PathVariable Integer bookId, @PathVariable Integer authorId) {
+        bookService.assignAuthorsToBook(bookId, authorId);
+        return ResponseEntity.ok("Author assigned to book successfully");
+    }
+
 
 
 }

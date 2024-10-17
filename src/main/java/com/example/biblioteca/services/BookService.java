@@ -16,6 +16,6 @@ public interface BookService {
 
     public BookModel updateBook(Integer id, BookModel bookToUpdate);
 
-    public BookModel assignAuthorsToBook(Integer bookId, List<Integer> authorIds);
+    public BookModel assignAuthorsToBook(Integer bookId, Integer authorId);
 
 }

@@ -88,11 +88,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookModel assignAuthorsToBook(Integer bookId, List<Integer> authorIds) {
+    public BookModel assignAuthorsToBook(Integer bookId, Integer authorId) {
         Optional<BookModel> optionalBook = bookRepo.findById(bookId);
         if (optionalBook.isPresent()) {
             BookModel book = optionalBook.get();
-            List<AuthorModel> authors = authorRepo.findAllById(authorIds);
+            List<AuthorModel> authors = authorRepo.findAllById(List.of(authorId));
             book.setAuthors(authors);
             return bookRepo.save(book);
         } else {
