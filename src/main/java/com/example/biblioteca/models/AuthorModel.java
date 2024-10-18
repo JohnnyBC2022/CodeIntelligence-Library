@@ -36,11 +36,11 @@ public class AuthorModel {
         this.authorName = authorName;
     }
 
-    public AuthorModel() {
-    }
-
     public List<BookModel> getBooks() {
         return books;
+    }
+
+    public AuthorModel() {
     }
 
     public void setBooks(List<BookModel> books) {

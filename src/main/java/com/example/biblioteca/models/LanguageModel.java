@@ -1,6 +1,9 @@
 package com.example.biblioteca.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "LANGUAGE")
@@ -11,6 +14,10 @@ public class LanguageModel {
     private Integer idLanguage;
 
     private String description;
+
+    @OneToMany(mappedBy = "idLanguage")
+    @JsonManagedReference("language-books")
+    List<BookModel> books;
 
     public Integer getIdLanguage() {
         return idLanguage;
@@ -26,6 +33,14 @@ public class LanguageModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<BookModel> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookModel> books) {
+        this.books = books;
     }
 
     public LanguageModel() {

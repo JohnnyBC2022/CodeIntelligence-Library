@@ -1,6 +1,5 @@
 package com.example.biblioteca.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,16 +13,11 @@ public class LoanModel {
     private Integer idLoan;
 
     @ManyToOne
-    @JoinColumn(name = "id_book", nullable = false)
-    private BookModel book;
-
-    @ManyToOne
     @JoinColumn(name = "id_copy", nullable = false)
     private CopyModel copy;
 
     @ManyToOne
     @JoinColumn(name = "id_member", nullable = false)
-    @JsonIgnoreProperties("loans")
     private MemberModel member;
 
     private LocalDate loanDate;
@@ -36,14 +30,6 @@ public class LoanModel {
 
     public void setIdLoan(Integer idLoan) {
         this.idLoan = idLoan;
-    }
-
-    public BookModel getBook() {
-        return book;
-    }
-
-    public void setBook(BookModel book) {
-        this.book = book;
     }
 
     public CopyModel getCopy() {
@@ -81,9 +67,8 @@ public class LoanModel {
     public LoanModel() {
     }
 
-    public LoanModel(Integer idLoan, BookModel book, CopyModel copy, MemberModel member, LocalDate loanDate, LocalDate returnDate) {
+    public LoanModel(Integer idLoan, CopyModel copy, MemberModel member, LocalDate loanDate, LocalDate returnDate) {
         this.idLoan = idLoan;
-        this.book = book;
         this.copy = copy;
         this.member = member;
         this.loanDate = loanDate;

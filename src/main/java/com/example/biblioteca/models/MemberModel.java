@@ -1,9 +1,9 @@
 package com.example.biblioteca.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
-import java.util.List;
+
 
 @Entity
 @Table(name = "MEMBER")
@@ -18,10 +18,6 @@ public class MemberModel {
     private String address;
 
     private String phone;
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("member")
-    private List<LoanModel> loans;
 
     public Integer getIdMember() {
         return idMember;
@@ -55,22 +51,13 @@ public class MemberModel {
         this.phone = phone;
     }
 
-    public List<LoanModel> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(List<LoanModel> loans) {
-        this.loans = loans;
-    }
-
     public MemberModel() {
     }
 
-    public MemberModel(Integer idMember, String dni, String address, String phone, List<LoanModel> loans) {
+    public MemberModel(Integer idMember, String dni, String address, String phone) {
         this.idMember = idMember;
         this.dni = dni;
         this.address = address;
         this.phone = phone;
-        this.loans = loans;
     }
 }
