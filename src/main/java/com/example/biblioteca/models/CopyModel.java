@@ -28,7 +28,9 @@ public class CopyModel {
         this.books = books;
     }
 
-
+    public List<BookModel> getBooks() {
+        return books;
+    }
 
     public CopyModel() {
     }
