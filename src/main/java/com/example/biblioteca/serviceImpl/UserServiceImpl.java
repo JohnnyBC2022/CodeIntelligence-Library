@@ -5,6 +5,7 @@ import com.example.biblioteca.models.UserDto;
 import com.example.biblioteca.models.UserEntity;
 import com.example.biblioteca.repository.UserRepository;
 import com.example.biblioteca.services.UserService;
+import io.micrometer.common.lang.NonNull;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isAdmin(UserEntity user) {
+    public boolean isAdmin(@NonNull UserEntity user) {
         return user.getRole() == Role.ADMIN;
     }
 }

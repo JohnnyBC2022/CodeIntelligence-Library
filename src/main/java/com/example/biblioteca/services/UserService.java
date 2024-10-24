@@ -10,6 +10,6 @@ public interface UserService {
 
     void save(int id, UserDto userDto);
 
-    boolean isAdmin();
+    boolean isAdmin(UserEntity user);
 
 }
